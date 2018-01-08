@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--<meta name="viewport" content="width=device-width,user-scalable=no">-->
+		<script>
+			(function(){
+				var w =  window.screen.width;
+				var targetW = 320;
+				var scale = w/targetW;
+				var meta = document.createElement("meta");
+				meta.name = "viewport";
+				meta.content = "user-scalable=no,initial-scale="+scale+",minmum-scale="+scale+",maxmum-scale="+scale+"";
+				document.head.appendChild(meta);
+			})()
+		</script>
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script></script>
+	</body>
+</html>
