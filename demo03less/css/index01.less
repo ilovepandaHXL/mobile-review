@@ -1,0 +1,38 @@
+//变量用@
+@t-width:300px;
+body{
+    margin: 0;
+    background-color: pink;
+}
+#box{
+    height: @t-width;
+    width: @t-width;
+    background-color: blue; 
+}
+//混合
+#box2{
+    #box;
+    background-color: yellow;
+}
+//混合，可带参数
+.border01(@border_width){   
+    border: @border_width solid white;
+}
+.border03(@border_width:20px){
+    border: @border_width solid white;
+}
+#box2{
+    .border01(10px);
+    .border03();
+}
+
+//可以让在做css3的一些兼容时很方便：例如
+.border_radius(@radius){
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+#box2{
+    .border_radius(10px)
+}
