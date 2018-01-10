@@ -36,3 +36,65 @@ body{
 #box2{
     .border_radius(10px)
 }
+
+
+//匹配模式
+//制作三角
+.triangle(top,@w:5px,@c:black){
+    border: @w solid transparent;
+    border-top-color: @c; 
+}
+.triangle(left,@w:5px,@c:black){
+    border: @w solid transparent;
+    border-left-color: @c; 
+}
+.triangle(right,@w:5px,@c:black){
+    border: @w solid transparent;
+    border-right-color: @c; 
+}
+.triangle(bottom,@w:5px,@c:black){
+    border: @w solid transparent;
+    border-bottom-color: @c; 
+}
+.triangle(@_,@w:5px,@c:black){
+    height: 0px;
+    width: 0px;
+    overflow: hidden;
+}
+#sjx{
+    .triangle(right,20px,yellow);
+}
+
+//计算
+@r:2px;
+#box3{
+    height: 100/@r;
+    width: 100/@r;
+    background-color: #2D2D2D
+}
+
+
+//嵌套
+#list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 500px;
+    border: 2px solid blue;
+    .listl{
+        border: 2px solid pink;
+        .lib{
+            height: 5px;
+            background-color: gray;
+        }
+    }
+}
+a{
+    color: black;
+   &:hover{//&代表他的上一层选择器
+       color: red;
+   }
+}
+
+//避免编译~
+

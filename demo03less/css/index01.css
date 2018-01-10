@@ -22,3 +22,35 @@ body {
   -moz-border-radius: 10px;
   border-radius: 10px;
 }
+#sjx {
+  border: 20px solid transparent;
+  border-right-color: #ffff00;
+  height: 0px;
+  width: 0px;
+  overflow: hidden;
+}
+#box3 {
+  height: 50px;
+  width: 50px;
+  background-color: #2d2d2d;
+}
+#list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 500px;
+  border: 2px solid blue;
+}
+#list .listl {
+  border: 2px solid pink;
+}
+#list .listl .lib {
+  height: 5px;
+  background-color: gray;
+}
+a {
+  color: black;
+}
+a:hover {
+  color: red;
+}
