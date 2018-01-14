@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 300px;
+				border: 1px solid blue;
+				display: flex;
+				/*元素主轴开始位置，富余空间在主轴的结束位置*/
+				/*justify-content: flex-start;*/
+				/*元素主轴结束位置，富余空间在主轴的开始位置*/
+				/*justify-content: flex-end;*/
+				/*元素在主轴中间位置，富余空间在两侧*/
+				/*justify-content: center;*/
+				/*富余空间平均分配在每两个元素之间*/
+				/*justify-content: space-between;*/
+				/*把富余空间平均分配在每个元素两侧*/
+				/*justify-content: space-around*/
+				
+				
+				
+				/*元素在侧轴开始位置，富余空间在侧轴结束位置*/
+				/*align-items: flex-start;*/
+				/*元素在侧轴结束位置，富余空间在侧轴开始位置*/
+				/*align-items: flex-end;*/
+				/*元素在侧轴中间*/
+				/*align-items: center;*/
+				/*根据侧轴方向上文字的基线对齐*/
+				align-items: baseline;
+			
+			}
+			#box div{
+				height: 50px;
+				width: 50px;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+		</div>
+	</body>
+</html>

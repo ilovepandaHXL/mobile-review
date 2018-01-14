@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				border: 1px solid blue;
+				height: 200px;
+				/*新版弹性盒模型*/
+				display: flex;
+				/*设置主轴方向为水平方向*/
+				flex-direction: row;
+				/*设置主轴方向为垂直方向*/
+				/*flex-direction: column;*/
+				/*元素排列顺序*/
+				/*水平反序*/
+				/*flex-direction: row-reverse;*/
+				/*垂直反序*/
+				/*flex-direction: column-reverse;*/
+			}
+			#box div{
+				height: 50px;
+				width: 50px;
+				background-color: pink;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+		</div>
+	</body>
+</html>

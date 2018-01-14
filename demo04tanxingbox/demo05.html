@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 300px;
+				border: 1px solid blue;
+				display: flex;
+			}
+			#box div{
+				height: 50px;
+				width: 50px;
+				background-color: pink;
+				/*子元素尺寸=盒子尺寸*子元素的box-flex属性值/所有子元素的box-flex属性和*/
+				flex-grow: 1;
+			}
+			#box div:nth-child(1){
+				order: 1;
+			}
+			#box div:nth-child(2){
+				order: 3;
+			}
+			#box div:nth-child(3){
+				order: 2;
+			}
+			#box div:nth-child(4){
+				order: 4;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				border: 1px solid blue;
+				height: 300px;
+				display: -webkit-box;
+			}
+			#box div{
+				height: 50px;
+				width: 50px;
+				background-color: pink;
+			}
+			#box div:nth-child(1){
+				height: 50px;
+				-webkit-box-flex: 1;
+				-webkit-box-ordinal-group: 2;
+			}
+			#box div:nth-child(2){
+				height: 50px;
+				-webkit-box-flex: 1;
+				-webkit-box-ordinal-group: 1;
+			}
+			#box div:nth-child(3){
+				height: 50px;
+				-webkit-box-flex: 3;
+				-webkit-box-ordinal-group: 3;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+		</div>
+	</body>
+</html>

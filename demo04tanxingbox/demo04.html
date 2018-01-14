@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 300px;
+				border: 1px solid blue;
+				display: -webkit-box;
+				/*元素在左侧，富余空间在右侧*/
+				/*-webkit-box-pack: start*/
+				/*元素在右侧，富余空间在左侧*/
+				/*-webkit-box-pack: end*/
+				
+				/*中间*/
+				/*-webkit-box-pack: center;*/
+				/*两个元素之间均分*/
+				/*-webkit-box-pack: justify;*/
+				
+				
+				
+				/*元素在侧轴开始位置显示*/
+				-webkit-box-align: start;
+				/*元素在侧轴结束位置显示*/
+				-webkit-box-align: end;
+				/*元素在侧轴中间显示*/
+				-webkit-box-align: center;
+				
+				
+			}
+			#box div{
+				height: 50px;
+				width: 50px;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+		</div>
+	</body>
+</html>

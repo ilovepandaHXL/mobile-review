@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0
+			}
+			#box{
+				height: 200px;
+				border: 1px solid blue;
+				/*老版弹性盒模型*/
+				display: -webkit-box;
+				/*水平显示*/
+				-webkit-box-orient: horizontal;
+				/*垂直显示*/
+				/*-webkit-box-orient: vertical;*/
+				/*正序*/
+				/*-webkit-box-direction: normal;*/
+				/*反序*/
+				-webkit-box-direction: reverse;
+			}
+			#box div{
+				height: 50px;
+				width: 50px;
+				background-color: blue;	
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+		</div>
+	</body>
+</html>
