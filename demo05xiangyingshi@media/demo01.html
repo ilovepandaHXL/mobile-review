@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>响应式</title>
+		<style>
+			body{
+				margin: 0;
+			}
+			
+			#box{
+				height: 100px;
+				width: 100px;
+				background-color: blue;
+			}
+			/*
+			 * 当屏幕大于等于500的时候识别
+			 */
+			@media all and (min-width:500px){
+				#box{
+					background-color: pink;
+				}
+			}
+			/*
+			 * 媒体查询
+			 * all 
+			 * braille盲文触觉设备
+			 * embossed盲文打字机
+			 * print手持设备
+			 * projection打印预览
+			 * screen彩屏设备
+			 * speech"听觉"类似媒体类型
+			 * tty不适用像素设备
+			 * tv 电视
+			 * 
+			 * @media only设备类型特定
+			 * and 连接媒体类型和媒体特性
+			 */
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+</html>

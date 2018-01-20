@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 100px;
+				width: 100px;
+				background-color: pink
+			}
+			@media all and (max-width: 500px){
+				#box{
+					background-color: blue
+				}
+			}
+			/*@media not tv{不包括
+				
+			}*/
+			/*
+			 * min-width:当屏幕大于等于某值时识别
+			 * max-width:当屏幕小于等于某个值时
+			 */
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+</html>

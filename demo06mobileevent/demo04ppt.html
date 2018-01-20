@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title>无缝滚动</title>
+		<script>
+			(function(){
+				var w = window.screen.width;
+				var fsize = w/12;
+				document.documentElement.style.fontSize = fsize + "px";
+			})();
+		</script>
+		<style>
+			body{
+				margin: 0;
+			}
+			ul{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.fc:after{
+				content: "";
+				display: block;
+				clear: both;
+			}
+			html body{
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			#box{
+				position: relative;	
+				height: 6.666666666666667rem;
+			}
+			#box #list{
+				position: absolute;
+				width: 36rem;
+			}
+			#box #list li{
+				float: left;
+				height: 6.666666666666667rem;
+				line-height: 6.666666666666667rem;
+				text-align: center;
+				width: 12rem;
+			}
+			#box #list li:nth-child(1){
+				background-color: pink;
+			}
+			#box #list li:nth-child(2){
+				background-color: yellow;
+			}
+			#box #list li:nth-child(3){
+				background-color: cornflowerblue;
+			}
+			#box #list li:nth-child(4){
+				background-color: pink;
+			}
+			#box #list li:nth-child(5){
+				background-color: yellow;
+			}
+			#box #list li:nth-child(6){
+				background-color: cornflowerblue;
+			}
+			#box nav{
+				position: absolute;
+				bottom: 0;
+				left: 3.999rem;
+				
+			}
+			#box nav a{
+				float: left;
+				height: 0.6666666666666667rem;
+				width: 0.6666666666666667rem;
+				background-color: #000000;
+				border-radius: 50%;
+				margin: 0.3333333333333333rem;
+			}
+			#box nav .active{
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="list" class="fc">
+				<li>第一张</li>
+				<li>第二张</li>
+				<li>第三张</li>
+			</ul>
+			<nav class="fc">
+				<a href="javascript:;" class="active"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+			</nav>
+		</div>
+		<script>
+			document.addEventListener("touchstart",function(ev){
+				ev.preventDefault();
+			})
+			
+			var list = document.getElementById("list");
+			var navBtn = document.getElementsByTagName("a");
+			var disX = 0;//按下的坐标;
+			var listL = 0;//当前按下list的left值;
+			var w = document.documentElement.clientWidth;//一张图片的宽度
+			
+			list.innerHTML += list.innerHTML  
+			list.style.width = w * list.children.length + "px";
+			
+			list.addEventListener("touchstart",start);
+			list.addEventListener("touchmove",move);
+			list.addEventListener("touchend",end);
+			function start(ev){
+				var e = ev.changedTouches[0];
+				list.style.transition = "none";
+				disX = e.pageX; 
+				//console.log(e.pageX);
+				//在按下的时候要知道现在是第几张图片，如果是第一张，那么需要快速拉到底4张，如果是最后一张,要拉到原最后一张
+				var num = Math.round(list.offsetLeft/w);
+				if(num == 0){
+					num = -navBtn.length;
+					list.style.left = num*w + "px";
+				}
+				if( num ==  -(list.children.length-1)){
+					num = -(navBtn.length-1);
+					list.style.left = num*w + "px";
+				}
+				listL = this.offsetLeft;//必须等上面变化问候在去获取这个值；
+				//console.log(num);
+			}
+			function move(ev){
+				var e = ev.changedTouches[0];
+				//console.log(e.pageX);
+				list.style.left = (e.pageX - disX) + listL + "px";
+			}
+			function end(ev){
+				var num = Math.round(list.offsetLeft/w);
+				list.style.left = num*w+"px";
+				list.style.transition = "0.8";
+				console.log(num);
+				for( var i = 0;i<navBtn.length;i++ ){
+					navBtn[i].className = "";
+				}
+				navBtn[-num%navBtn.length].className = "active";
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 200px;
+				width: 200px;
+				background-color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<input type="text" id="intext">
+		<script>
+			/*
+			 * 阻止pc事件的优点:
+			 * 				1，ios10下，设置meta禁止用户缩放是不可行的，
+			 * 				解决这个问题；
+			 * 				2，解决ios10下的溢出隐藏的问题。
+			 * 				3，禁止系统默认的滚动条，橡皮筋效果阻止
+			 * 				4，禁止长按选中文字，选中图片，系统默认菜单
+			 * 				5，点透问题
+			 * 				6，也阻止了焦点元素的焦点行为;
+			 * 					解决： 在这个元素上面阻止冒泡
+			 * 
+			 *
+			 */
+			document.addEventListener("touchstart",function(ev){
+				ev.preventDefault();
+			})
+			var iT = document.getElementById("intext");
+			iT.addEventListener("touchstart",function(ev){
+				ev.stopPropagation();
+			})
+		</script>
+	</body>
+</html>

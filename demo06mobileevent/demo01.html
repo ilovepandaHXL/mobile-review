@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 200px;
+				width: 200px;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			/*
+			 * 移动端事件：
+			 *			手指按下：ontouchstart
+			 * 			手指移动：ontouchmove
+			 * 			手指抬起：ontouchend
+			 * 
+			 * 注意问题： 
+			 *      pc上的事件比移动端的事件略慢，大概300ms
+			 * 
+			 * 移动端的点透：
+			 * 		当上层元素发生点击时，下层元素也有点击（焦点）特征，
+			 * 		当300ms之后，如果上层元素消失或隐藏，目标就会漂移到下层元素上面，就会触发点击行为
+			 * 		解决：1，下层不要使用有点击（焦点）特性的元素。
+			 * 			2，阻止pc事件
+			 * 			document.addEventListener("touchstart",function(ev){
+			 * 					ev.preventDefault();
+			 * 			})
+			 * 			不要用pc端事件，有特性的元素可以用事件去添加
+			 */
+			var btn = document.getElementById("box");
+			btn.addEventListener("touchstart",start);
+			btn.addEventListener("touchmove",move);
+			btn.addEventListener("touchend",end);
+			function start(){
+				console.log(1);
+			}
+			function move(){
+				console.log(2);
+			}
+			function end(){
+				console.log(3);
+			}
+		</script>
+	</body>
+</html>
