@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#wrap{
+				height: 300px;
+				width: 300px;
+				border: 1px solid blue;
+				margin: auto;
+				-webkit-perspective: 200px;
+				perspective: 200px;
+			}
+			#box{
+				height: 100px;
+				width: 100px;
+				background-color: pink;
+				margin: 100px auto;
+				transition: 1s;
+			}
+			/*
+			 * perspective景深（加给父级）
+			 * 
+			 * transform-style元素在做3D变换的时候，是否保留子元素的3D变换
+			 * 
+			 */
+			/*
+			 * rotateX/rotateY/rotateZ/rotate3D
+			 * translateX/translateY/translateZ/translate3D    -往里+往外
+			 * 
+			 */
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="box"></div>
+		</div>
+		<script>
+			document.addEventListener("touchstart",function(ev){
+				ev.preventDefault();
+			})
+			wrap.addEventListener("touchend",function(ev){
+				box.style.webkitTransform = box.style.transform = "translateZ(-100px)";
+			})
+		</script>
+	</body>
+</html>

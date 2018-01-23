@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title>transform模拟拖拽页面</title>
+		<style>
+			html,
+			body{
+				height: 100%;
+				width: 100%;
+				overflow: hidden;
+				position: relative;
+			}
+			body{
+				margin: 0;
+			}
+			header{
+				height: 40px;
+				text-align: center;
+				line-height: 40px;
+				background-color: #000000;
+				color: white;
+				font-size: 30px
+			}
+			#wrap{
+				position: absolute;
+				top: 40px;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				overflow: hidden;
+			}
+			#list{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			#list li{
+				border-bottom: 1px solid blue;
+			}
+		</style>
+	</head>
+	<body>
+		<header>这是一个头部</header>
+		<div id="wrap">
+			<ul id="list"></ul>
+		</div>
+		<script>
+			document.addEventListener("touchstart",function(ev){
+				ev.preventDefault();
+			})
+			
+			function setUl(){
+				var list = document.querySelector("#list");
+				var html = "";
+				for( var i = 1;i<101;i++ ){
+					html += "<li>这是第"+i+"个li</li>";
+				}
+				list.innerHTML = html;
+			}
+			setUl();
+			
+			var list = document.querySelector("#list");
+			var wrap = document.querySelector("#wrap");
+			var startPoint = 0;
+			var startEl = 0;
+			var elTranslateY = 0;
+			
+			list.addEventListener("touchstart",function(ev){
+				startPoint = ev.changedTouches[0].pageY;
+				startEl = elTranslateY;
+			})
+			list.addEventListener("touchmove",function(ev){
+				var nowPoint = ev.changedTouches[0].pageY;
+				var dis = nowPoint-startPoint;
+				elTranslateY = startEl + dis;
+				list.style.webkitTransform = list.style.transform = "translateY("+elTranslateY+"px)" ;
+			});
+		</script>
+	</body>
+</html>

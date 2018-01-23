@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title>自定义滚动条</title>
+		<style>
+			body{
+				margin: 0;
+			}
+			body,
+			html{
+				height: 100%;
+				overflow: hidden;
+				position: relative;
+			}
+			header{
+				height: 40px;
+				font-size: 20px;
+				line-height: 40px;
+				background-color: #000000;
+				color: white;
+				text-align: center;
+			}
+			footer{
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				height: 40px;
+				font-size: 20px;
+				line-height: 40px;
+				background-color: #000000;
+				color: white;
+				text-align: center;
+			}
+			#wrap{
+				position: absolute;
+				top: 40px;
+				left: 0;
+				right: 0;
+				bottom: 40px;
+				background-color: pink;
+				overflow: hidden;
+			}
+			ul{
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+			ul li{
+				border-bottom: 1px solid blue;
+				text-indent: 2em;
+			}
+		</style>
+	</head>
+	<body>
+		<header>这是头部</header>
+		<section id="wrap">
+			<ul id="list"></ul>
+		</section>
+		<footer>这是脚部</footer>
+		<script src="getTransform.js"></script>
+		<script src="m.Tween2.js"></script>
+		<script>
+			document.addEventListener("touchstart",function(ev){
+				ev.preventDefault();
+			})
+			
+			var list = document.getElementById("list");
+			var wrap = document.getElementById("wrap");
+			function setUl(){
+				var html = "";
+				var list = document.getElementById("list");
+				for( var i = 1;i<101;i++ ){
+					html += "<li>这是第"+i+"个li</li>"
+				}
+				list.innerHTML = html;
+			}
+			setUl();
+//			cssTransform(list,"translateY",100);
+//			console.log(cssTransform(list,"translateY"));
+			var startPoint = 0;//手指接触的初始点
+			var startEl = 0;//元素所在位置
+			var lastY = 0;
+			var lastDis = 0;
+			var lastTime = 0;
+			var lastTimeDis = 0;
+			var maxTranslate = wrap.clientHeight - list.offsetHeight;
+			
+			cssTransform(list,"translateZ",0.01);//设定3d，硬件加速
+			list.addEventListener("touchstart",function(ev){
+				clearInterval(list.timer);
+				maxTranslate = wrap.clientHeight - list.offsetHeight;
+				startEl = cssTransform(list,"translateY");
+				startPoint = ev.changedTouches[0].pageY;
+				lastY = startEl;
+				lastTime = new Date().getTime();
+				lastDis = lastTimeDis = 0;
+			})
+			list.addEventListener("touchmove",function(ev){
+				var nowTime = new Date().getTime();
+				var dis = ev.changedTouches[0].pageY-startPoint;
+				cssTransform(this,"translateY",startEl+dis);
+				lastDis = startEl+dis-lastY;
+				lastY = startEl+dis;
+				lastTimeDis = nowTime - lastTime;
+				lastTime = nowTime;
+			})
+			
+			list.addEventListener("touchend",function(ev){
+				var type = "easeOut";
+				var speed = Math.round(lastDis/lastTimeDis*10);
+				speed = lastTimeDis <= 0?0:speed;
+				var target = Math.round(speed*20 + cssTransform(this,"translateY"));
+				if( target>0 ){
+					target = 0;
+					type = "backOut";
+				}else if(target<maxTranslate){
+					target = maxTranslate;
+					type = "backOut";
+				}
+				MTween({
+					el: this,
+					target: {
+						translateY: target
+					},
+					time: Math.round(Math.abs(target-cssTransform(this,"translateY"))*2.5),
+					type: type,
+//					callBack: function(){
+//						console.log(cssTransform(this,"translateY"));
+//					}
+				})
+			})
+			
+		</script>
+	</body>
+</html>

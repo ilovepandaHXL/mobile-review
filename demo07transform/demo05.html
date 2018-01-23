@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#wrap{
+				height: 300px;
+				width: 300px;
+				border: 1px solid blue;
+				perspective: 200px;
+			}
+			#box{
+				height: 75px;
+				width: 100px;
+				margin: 100px auto;
+				padding-top: 25px;
+				background-color: pink;
+				transition: 3s;
+				transform-style: preserve-3d;/*保留子元素3d flat不保留*/
+			}
+			#box1{
+				height: 50px;
+				width: 50px;
+				margin: 0 auto;
+				background-color: red;
+				transform: rotateX(60deg);
+			}
+			/*
+			 * perspective-origin: center center 视线方向
+			 */
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="box">
+				<div id="box1"></div>
+			</div>
+		</div>
+		<script>
+			document.addEventListener("touchstart",function(ev){
+				ev.preventDefault();
+			})
+			wrap.addEventListener("touchend",function(ev){
+				box.style.transform = "rotateY(360deg)";
+			})
+		</script>
+	</body>
+</html>

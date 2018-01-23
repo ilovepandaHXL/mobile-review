@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 300px;
+				width: 300px;
+				border: 1px solid blue;
+				margin: auto;
+			}
+			#div{
+				height: 100px;
+				width: 100px;
+				background-color: pink;
+				margin: 100px auto;
+				-webkit-transition: 1s;
+				transition: 1s;
+			}
+			/*
+			 * rotate 旋转 deg
+			 * skew 斜切 skewX skewY
+			 * scale()缩放 scaleX scaleY
+			 * translateX translateY 缩放
+			 * -webkit-transform-origin:变换起点
+			 * 
+			 * transform:"translateX(100px) scale(0.5)";
+			 * 执行顺序为先scale(0.5)再执行translateX(100px)   先写的后执行
+			 * 
+			 * 
+			 */
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="div"></div>
+		</div>
+		<script>
+			document.addEventListener("touchstart",function(ev){
+				ev.preventDefault();
+			})
+			
+			var box = document.getElementById("box");
+			var div = document.getElementById("div");
+			box.addEventListener("touchend",end);
+			function end(){
+				div.style.weblitTransform = div.style.transform = "rotate(360deg)";
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 300px;
+				width: 300px;
+				border: 1px solid blue;
+				perspective: 100px;
+			}
+			#div{
+				height: 100px;
+				width: 100px;
+				/*background-color: red;*/
+				margin: 100px auto;
+				transform-style: preserve-3d;
+				-webkit-transform-style: preserve-3d;
+				position: relative;
+				transition: 3s;
+				
+				/*transform: rotateY(deg);*/
+			}
+			#box span{
+				position: absolute;
+				top: 0;
+				left: 0;
+				font-size: 50px;
+				height: 100px;
+				width: 100px;
+				line-height: 100px;
+				text-align: center;
+				backface-visibility: hidden;
+				-webkit-backface-visibility: hidden;
+				/*背面隐藏*/
+			}
+			#box span:nth-child(1){
+				height: 50px;
+				width: 50px;	
+				line-height: 50px;
+				left: 25px;
+				top: 25px;
+				background-color: red;
+				transform: translateZ(10px);
+			}
+			#box span:nth-child(2){
+				background-color: pink;
+				transform: rotateY(180deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="div">
+				<span>正</span>
+				<span>反</span>
+			</div>
+		</div>
+		<script>
+			document.addEventListener("touchstart",function(ev){
+				ev.preventDefault();
+			})
+			box.addEventListener("touchend",function(){
+				div.style.transform = "rotateY(360deg)"
+			})
+		</script>
+	</body>
+</html>

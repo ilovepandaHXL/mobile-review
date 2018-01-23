@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 200px;
+				width: 200px;
+				background-color: pink;
+				/*transform: translateY(100px);*/
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			var box = document.getElementById("box");
+			box.style.webkitTransform = box.style.transform = "matrix(1,0,0,1,100,100)";
+			
+			//matrix(a,b,c,d,e,f);
+			//位移：
+			//x轴位移 = e + x;
+			//y轴位移= f + x;
+			
+			//缩放：
+			//x轴：
+			//a = a*x;
+			//c = c*x;
+			//e = e*x;
+			//y轴：
+			//b = b*x;
+			//d = d*x;
+			//f = f*x;
+			
+			//斜切
+			//角度转弧度：deg*Math.PI/180;
+			//x斜切：
+			//c=Math.tan(deg*Math.PI/180);
+			//y斜切；
+			//b=Math.tan(deg*Math.PI/180);
+			
+			//旋转
+			//a=Math.cos(deg/180*Math.PI)
+			//b=Math.sin(deg/180*Math.PI)
+			//c=-Math.sin(deg/180*Math.PI)
+			//d=Math.cos(deg/180*Math.PI)
+		</script>
+	</body>
+</html>
