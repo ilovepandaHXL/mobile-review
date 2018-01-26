@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			html,
+			body{
+				height: 100%;
+			}
+			#mask{
+				height: 100%;
+				width: 100%;
+				text-align: center;
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: none;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="mask">请竖屏观看</div>
+		<script>
+			//横竖屏切换事件
+			hschange();
+			window.addEventListener("orientationchange",hschange)
+			function hschange(){
+				if(window.orientation==90||window.orientation==-90){
+					mask.style.display = "block";
+					alert("竖着")
+				}else{
+					mask.style.display = "none";
+				}
+//				alert(window.orientation);
+				//90 -90横屏
+				//0 180竖屏状态
+			}
+		</script>
+	</body>
+</html>

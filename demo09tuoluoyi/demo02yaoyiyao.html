@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 100px;
+				width: 100px;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			var lastX;
+			var lastY;
+			var lastZ;
+			var maxRang = 50;
+			var minRang = 5;
+			var isShake = false;
+//			var max = 0;
+			//记录上一次的加速度，和当前次的加速度相减，当差值大于一定的幅度的时候，可认定用户在摇一摇
+			window.addEventListener("devicemotion",function(ev){
+				var motion = ev.accelerationIncludingGravity;
+				var x = Math.round(motion.x);
+				var y = Math.round(motion.y);
+				var z = Math.round(motion.z);
+				if( typeof lastX == "undefined" ){
+					lastX = x;
+					lastY = y;
+					lastZ = z;
+					return;
+				}
+				var dis = Math.abs(x-lastX)+Math.abs(y-lastY)+Math.abs(z-lastZ);
+//				max = Math.max(max,dis);
+//				box.innerHTML = max;
+				if( dis>50 ){
+					isShake = true;
+				}
+				if(isShake&&dis<minRang){
+					isShake = false;
+					alert("摇一摇后")
+				}
+				lastX = x;
+				lastY = y;
+				lastZ = z;
+			})
+		</script>
+	</body>
+</html>

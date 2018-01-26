@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width:device-width,user-scalable=no">
+		<title>陀螺仪</title>
+		<style>
+			body{
+				margin: 0;
+			}
+			body,
+			html{
+				height: 100%;
+				overflow: hidden;
+			}
+			#box{
+				position: absolute;
+				height: 200px;
+				width: 200px;
+				background-color: pink;
+				top: 50%;
+				left: 50%;
+				margin-top: -100px;
+				margin-left: -100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script src="m.Tween2.js"></script>
+		<script>
+			//兼容性处理
+//			var u = navigator.userAgent;
+//			var isAndroid = u.indexOf("Android")>-1||u.indexOf("Adr")>-1;
+//			var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+			
+			function getAdr(){
+				var u = navigator.userAgent;
+				return u.indexOf("Android")>-1||u.indexOf("Adr")>-1;
+			}
+//			console.log(getAdr());
+			
+			
+			var box = document.getElementById("box");
+			css(box,"translateX",0)
+			window.addEventListener("devicemotion",function(ev){
+				var motion = ev.accelerationIncludingGravity;
+				var tX = css(box,"translateX");
+				if(getAdr()){
+					x = -Math.round(motion.x);
+				}
+				css(box,"translateX",tX+x);
+			})
+			
+		</script>
+	</body>
+</html>
