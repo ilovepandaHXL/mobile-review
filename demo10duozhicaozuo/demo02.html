@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 200px;
+				width: 200px;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script src="m.Tween2.js"></script>
+		<script>
+			
+			//封装多指操作。
+//			init:{
+//				el: element,元素
+//				start: fn,gesturestart要做的操作
+//				change: fn,gesturechange要做的操作
+//				end: fn gestureend要做的操作
+//			}
+			document.addEventListener("touchstart",function(ev){
+				ev.preventDefault();
+			})
+			var box = document.getElementById("box");
+			var startRotate = 0;
+			var startScale = 0;
+			setGesTure({
+				el: box,
+				start: function(ev){
+//					console.log(ev.type);
+//					this.style.backgroundColor = "blue";
+					startRotate = css(this,"rotate");
+					startScale = css(this,"scale");
+				},
+				change: function(ev){
+//					alert(1);
+					css(this,"rotate",startRotate+ev.rotation);
+					css(this,"scale",startScale*ev.scale);
+				}
+			})
+			
+			
+			
+			//封装多指操作行为
+			function getDis(point1,point2){//两点确定直线长度
+				var x = point1.x-point2.x;
+				var y = point1.y-point2.y;
+				return Math.sqrt(x*x+y*y);
+			}
+			function getDeg(point1,point2){//坐标确定倾斜角度Math.atan2(y,x)返回弧度，注意参数先y后x
+				var x = point1.x-point2.x;
+				var y = point1.y-point2.y;
+				return Math.atan2(y,x)*180/Math.PI;
+			}
+			function setGesTure(init){
+				var el = init.el;
+				var isGesture = false;
+				var startPoint = [];
+				if( !el ){
+					return;
+				}
+				el.addEventListener("touchstart",function(ev){
+					if(ev.touches.length >=2 ){
+						isGesture = true;//触发了gesture
+						startPoint[0] = {x:ev.touches[0].pageX,y:ev.touches[0].pageY};
+						startPoint[1] = {x:ev.touches[1].pageX,y:ev.touches[1].pageY};
+						
+						init.start&&init.start.call(el,ev);
+					}
+				})
+				el.addEventListener("touchmove",function(ev){
+					if( isGesture&&ev.touches.length>=2 ){
+						var nowPoint = [];
+						nowPoint[0] = {x:ev.touches[0].pageX,y:ev.touches[0].pageY};
+						nowPoint[1] = {x:ev.touches[1].pageX,y:ev.touches[1].pageY};
+						var startDis = getDis(startPoint[0],startPoint[1]);
+						var nowDis = getDis(nowPoint[0],nowPoint[1]);
+						var startDeg = getDeg(startPoint[0],startPoint[1]);
+						var nowDeg = getDeg(nowPoint[0],nowPoint[1]);
+						ev.scale = nowDis/startDis;
+						ev.rotation = nowDeg - startDeg;
+						init.change&&init.change.call(el,ev);
+					}
+				})
+				el.addEventListener("touchend",function(ev){
+					if(isGesture){
+						if( ev.touches.length <2||ev.targetTouches.length<1 ){
+							isGesture = false;
+							init.end&&init.end.call(el,ev);
+						}
+					}
+				})
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 200px;
+				width: 200px;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			document.addEventListener("touchstart",function(ev){
+				ev.preventDefault();
+			})
+			//安卓不兼容
+			
+			box.addEventListener("gesturestart",function(ev){
+				alert(ev.type);
+//				this.style.backgroundColor = "blue";
+			})
+		</script>
+	</body>
+</html>
